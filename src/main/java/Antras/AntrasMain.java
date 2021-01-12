@@ -6,28 +6,40 @@ package Antras;
         add object to array. Bonus: add the ability to edit or delete object from the array. */
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class AntrasMain {
     public static void main(String[] args) {
-        ArrayList<Student> students = new ArrayList<>();
-        students.add(createStudent());
 
-        for (Student student : students) {
-            System.out.println(student.getName()+" Age: "+student.getAge()+" Grade: "+student.getGrade());
-        }
+       addStudentsToList();
 
     }
-    private static Student createStudent (){
-           Scanner scanner = new Scanner(System.in);
-           Student student = new Student();
-           System.out.println("Student Name : ");
-           student.setName(scanner.nextLine());
-           System.out.println("Student Age : ");
-           student.setAge(scanner.nextInt());
-           System.out.println("Student Grade : ");
-           student.setGrade(scanner.nextInt());
-           return student;
-       }
 
+    private static Student createStudent() {
+        Scanner scanner = new Scanner(System.in);
+        Student student = new Student();
+        System.out.println("Student Name : ");
+        student.setName(scanner.nextLine());
+        System.out.println("Student Age : ");
+        student.setAge(scanner.nextInt());
+        System.out.println("Student Grade : ");
+        student.setGrade(scanner.nextInt());
+        return student;
+    }
+
+    private static List<Student> addStudentsToList() {
+        ArrayList<Student> students = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        String input ="yes";
+        while (input.toLowerCase().equals("yes")) {
+            students.add(createStudent());
+            System.out.println("add student -yes/no");
+            input = scanner.nextLine();
+            if (input.toLowerCase().equals("no")) {
+                break;
+            }
+        }
+       return students;
+    }
 }
